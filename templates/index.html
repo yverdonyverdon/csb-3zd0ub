@@ -1,0 +1,585 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLine Services</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+  
+    
+    
+    
+
+  <link rel="stylesheet" href="{% static 'css/site_css.css' %}">
+  <style>
+     .employee{
+      max-width:1150px;
+      margin:10px auto;
+      padding:0px 20px;
+  }
+  .employee .item {
+      position: relative;
+      max-width: 360px;
+      margin: 15px auto;
+      padding: 5px;
+      text-align: center;
+      border-radius: 4px;
+      overflow: hidden;
+      border:2px solid #eee;
+  }
+  .employee .item:hover{	
+      border:2px solid #32c8de;
+  }
+  .employee .item img {
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      border: 1px solid #eee;
+      border-radius: 3px;
+  }
+  .employee .item  .item-dtls h4 {
+      margin-top: 13px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+  }
+  .employee .item  .item-dtls .price {
+      display: block;
+      margin-bottom: 13px;
+      font-size: 25px;
+  }
+  .employee .item  .ecom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding-bottom:10px;
+      padding-top: 10px;
+      -webkit-transition: all 0.35s ease-in;
+      -moz-transition: all 0.35s ease-in;
+      -ms-transition: all 0.35s ease-in;
+      -o-transition: all 0.35s ease-in;
+      transition: all 0.35s ease-in;
+      /* background-color: white; */
+  }
+  .employee .item:hover  .ecom { 
+      margin-top: -50px; 
+  }
+  .employee .item  .ecom  a.btn{
+      border:1px solid #fff;
+      color:#fff;
+      background:transparent;
+      -webkit-transition: all 0.35s ease-in;
+      -moz-transition: all 0.35s ease-in;
+      -ms-transition: all 0.35s ease-in;
+      -o-transition: all 0.35s ease-in;
+      transition: all 0.35s ease-in;
+  }
+  .employee .item  .ecom  a.btn:hover{
+      background:rgb(66, 145, 190);
+      color:#777;
+    color: white;}
+
+  </style>
+</head>
+
+<body>
+
+
+
+
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'images/logo.jpg' %}" alt="img" width="30" height="24">
+        </a>
+        <a class="navbar-brand" href="/">Lifeline Services</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <a class="nav-link active" aria-current="page" href="#deal">Lightining Deals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#exploreemployee">Explore Employee</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="register_as_service_provider">Register as Service
+                Provider</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item" style="display: none;">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% endif %}
+
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Location">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success m" type="submit">Search</button>
+          </form>
+          {% if request.user.is_authenticated %}
+          <div style="display: none;">
+
+            <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#loginModal">
+              Login
+            </button>
+
+            <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#signupModal">
+              SignUp
+            </button>
+          </div>
+          {% else %}
+
+          <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#loginModal">
+            Login
+          </button>
+
+          <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#signupModal">
+            SignUp
+          </button>
+          {% endif %}
+        </div>
+      </div>
+
+
+      <!-- Login Modal -->
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel">Login</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="container">
+
+              <form action="/login" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="text" class="form-control" id="loginusername" aria-describedby="emailHelp"
+                    name="loginusername">
+                  <div id="emailHelp" class="form-text">Enter your Email or Username</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="loginpassword">
+                </div>
+                <!-- <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div> -->
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SignUp Modal -->
+      <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="container">
+
+              <form action="/signup" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="fname" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="fname" name="fname">
+                </div>
+                <div class="mb-3">
+                  <label for="lname" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="lname" name="lname">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="test" class="form-control" id="username" name="username">
+                </div>
+                <div class="mb-3">
+                  <label for="phoneno" class="form-label">Phone no</label>
+                  <input type="number" class="form-control" id="phoneno" name="phoneno">
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="mb-3">
+                  <label for="password2" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password2" name="password2">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </nav>
+
+  </div>
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+
+
+  <div class="container">
+
+    <div class="jumbotron" style="color: black;">
+      <h1 class="display-4">Hello,{{request.user}}</h1>
+      <p class="lead">Welcome to Lifeline services</p>
+      <hr class="my-4">
+      <p>Slogan of company</p>
+    </div>
+  </div>
+
+  <div class="card text-center mt-2" style="background-color: #32c8de;">
+
+    <div class="card-body">
+      <h5 class="card-title">Available Services</h5>
+      <p class="card-text"></p>
+    </div>
+
+  </div>
+
+  <div class="employee">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1553051021-9f94520a6cad?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FycGVudGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a >Carpenter</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZWxlY3RyaWNpYW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a>Electrician</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGx1bWJlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a>Plumber</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1604754742629-3e5728249d73?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGVjaG5pY2lhbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a>Technician</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1495461199391-8c39ab674295?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29va3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a>Cook</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1504807959081-3dafd3871909?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Z3VpZGV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a>Guide</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://cdn.pixabay.com/photo/2014/12/14/16/05/laundry-saloon-567951__340.jpg" alt="">
+            <div class="item-dtls">
+              <h5><a>Laundary</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWVjaGFuaWN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a>Mechanic</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1605201470550-f107ba6fdad3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGFpbnRlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a>Painter</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://cdn.pixabay.com/photo/2016/01/19/18/04/mother-1150056__340.jpg" alt="">
+            <div class="item-dtls">
+              <h5><a>Home Care</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVwYWlybWFufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+            <div class="item-dtls">
+              <h5><a>Repairman</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://envato-shoebox-0.imgix.net/5486/ff99-d526-4d2e-90a3-c226bb887617/80_T13A8088.jpg?auto=compress%2Cformat&fit=max&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark2.png&markalign=center%2Cmiddle&markalpha=18&w=1000&s=b17bfd7e4d8dfd7108b1d6d3d012ec7c" alt="">
+            <div class="item-dtls">
+              <h5><a>Babysitter</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="item">
+            <img class="img-responsive" src="https://wallpapercave.com/wp/wp8513407.jpg" alt="">
+            <div class="item-dtls">
+              <h5><a> +See All</a></h5>
+            </div>
+            <div class="ecom bg-lblue">
+              <a class="btn" href="/book">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div id="deal" class="bannerDiv mt-5">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=702&q=80"
+              class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-md-block">
+              <h5>Find Best Service Provider</h5>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+              class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-md-block">
+              <h5>Special deal</h5>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80"
+              class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-md-block">
+              <h5>Best events</h5>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card text-center mt-4" style="background-color: #32c8de;">
+
+    <div class="card-body">
+      <h5 class="card-title">Featured Employee</h5>
+      <p class="card-text"></p>
+    </div>
+  </div>
+
+  
+
+  <div class="container">
+
+    <div id="exploreemployee" class="employee">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 col-sm-6">
+            <div class="item">
+              <img class="img-responsive" src="https://images.unsplash.com/photo-1484517186945-df8151a1a871?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8MTcyOTI1OHx8ZW58MHx8fHw%3D&dpr=1&auto=format&fit=crop&w=291.2&q=60" alt="">
+              <div class="item-dtls">
+                <h5><a >MKBHD</a></h5>
+                <span>
+                  Mechanic
+                </span>
+              </div>
+              <div class="ecom bg-lblue">
+                <a class="btn" href="">Check Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="item">
+              <img class="img-responsive" src="https://images.unsplash.com/photo-1484517186945-df8151a1a871?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8MTcyOTI1OHx8ZW58MHx8fHw%3D&dpr=1&auto=format&fit=crop&w=291.2&q=60" alt="">
+              <div class="item-dtls">
+                <h5><a >Tony Scott</a></h5>
+                <span>
+                  Plumber
+                </span>
+              </div>
+              <div class="ecom bg-lblue">
+                <a class="btn" href="">Check Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="item">
+              <img class="img-responsive" src="https://images.unsplash.com/photo-1484517186945-df8151a1a871?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8MTcyOTI1OHx8ZW58MHx8fHw%3D&dpr=1&auto=format&fit=crop&w=291.2&q=60" alt="">
+              <div class="item-dtls">
+                <h5><a>James Holand</a></h5>
+                <span>Electrician</span>
+              </div>
+              <div class="ecom bg-lblue">
+                <a class="btn" href="">Check Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="item">
+              <img class="img-responsive" src="https://images.unsplash.com/photo-1484517186945-df8151a1a871?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8MTcyOTI1OHx8ZW58MHx8fHw%3D&dpr=1&auto=format&fit=crop&w=291.2&q=60" alt="">
+              <div class="item-dtls">
+                <h5><a>Colin Josh</a></h5>
+                <span>
+                  Carpenter
+                </span>
+              </div>
+              <div class="ecom bg-lblue">
+                <a class="btn" href="">Check Profile</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer font-small blue">
+
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
+      <a href=""> Lifeline Services</a>
+    </div>
+
+  </footer>
+  <!-- Footer -->
+</body>
+
+
+</html>
